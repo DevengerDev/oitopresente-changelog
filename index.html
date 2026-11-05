@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novidades do aplicativo</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:1.6rem; margin:0 0 24px; }
+  section { border-top:1px solid var(--line); padding:16px 0; }
+  h2 { font-size:1.1rem; margin:0 0 8px; }
+  ul { margin:0; padding-left:1.2em; }
+  .muted { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Novidades do aplicativo</h1>
+  <div id="list" class="muted">Carregando…</div>
+</main>
+<script>
+  fetch('changelog.json', { cache: 'no-cache' })
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById('list');
+      list.className = '';
+      list.textContent = '';
+      for (const release of data.releases) {
+        const section = document.createElement('section');
+        const h2 = document.createElement('h2');
+        h2.textContent = release.title;
+        const ul = document.createElement('ul');
+        for (const item of release.items) {
+          const li = document.createElement('li');
+          li.textContent = item;
+          ul.appendChild(li);
+        }
+        section.append(h2, ul);
+        list.appendChild(section);
+      }
+    })
+    .catch(() => { document.getElementById('list').textContent = 'Não foi possível carregar as novidades.'; });
+</script>
+</body>
+</html>
