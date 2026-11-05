@@ -9,6 +9,7 @@ Os arquivos são gerados automaticamente a partir do `CHANGELOG.md` do aplicativ
 - Página: https://devengerdev.github.io/oitopresente-changelog/
 - Markdown: https://devengerdev.github.io/oitopresente-changelog/CHANGELOG.md
 - JSON: https://devengerdev.github.io/oitopresente-changelog/changelog.json
+- Instruções para LLMs e agentes implementarem a tela de novidades: https://devengerdev.github.io/oitopresente-changelog/llms.txt
 
 ## Formato do JSON
 

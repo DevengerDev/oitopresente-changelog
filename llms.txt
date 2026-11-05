@@ -1,0 +1,65 @@
+# oitopresente-changelog
+
+> Public release notes ("Novidades") for the 8Presente / Qualy Sessa mobile app, in Brazilian Portuguese. These are the same short, user-facing notes published on Google Play ("O que há de novo"). This file tells an LLM or coding agent how to build a changelog view on another site or app that reads these notes.
+
+## Sources
+
+- JSON (use this for any UI): https://devengerdev.github.io/oitopresente-changelog/changelog.json
+- Markdown (for places that render Markdown as is): https://devengerdev.github.io/oitopresente-changelog/CHANGELOG.md
+- Reference page: https://devengerdev.github.io/oitopresente-changelog/
+
+Both files are generated from the app's internal changelog every time a release changes. Read them at runtime; never copy their content into your code or bundle it at build time, or your view goes stale on the next release.
+
+The server sends `Access-Control-Allow-Origin: *`, so a browser can fetch the JSON directly from any origin, without a proxy. It also sends `Cache-Control: max-age=600` and an `ETag`, so updates can take up to about 10 minutes to show.
+
+## JSON format
+
+```json
+{
+  "latest": "1.20.1",
+  "releases": [
+    {
+      "version": "1.20.1",
+      "title": "Versão 1.20.1",
+      "items": [
+        "Foto da aula separada por horário, inclusive nos segmentos.",
+        "Melhorias de estabilidade."
+      ]
+    }
+  ]
+}
+```
+
+- `latest` (string): the newest semantic version (`MAJOR.MINOR.PATCH`).
+- `releases` (array): every release, newest first. Keep this order; don't re-sort.
+- `version` (string or `null`): the semantic version. It is `null` for entries that don't belong to one version (for example "Alterações desde a versão 1.9.0"). Render those entries anyway, using `title`.
+- `title` (string): the heading to show, already in Portuguese (for example "Versão 1.20.1").
+- `items` (array of strings): the bullets, as plain text, with no leading "- ".
+
+New fields may be added later. Ignore fields you don't know about, and don't fail on them.
+
+## Implementing the view
+
+1. Fetch `changelog.json` with a timeout of about 10 seconds. Decode it as UTF-8: the text has Portuguese accents (á, ç, ã, õ).
+2. Show each release as a heading (`title`) followed by a bullet list (`items`), newest first.
+3. Treat every string as plain text. Insert it with `textContent` or your framework's normal escaped text binding, never with `innerHTML`, `dangerouslySetInnerHTML`, `v-html`, or a Markdown/HTML renderer.
+4. Keep the text exactly as published: don't translate, rewrite, summarize, or truncate items. To show less, show fewer releases (for example the 3 most recent, with a "Ver todas as novidades" link to the full list or the reference page).
+5. Write the UI's own labels in Brazilian Portuguese (`lang="pt-BR"`), for example "Novidades", "Carregando…", "Não foi possível carregar as novidades." and "Tentar novamente".
+6. Handle every state: loading, error (network failure, non-200 status, invalid JSON), empty (`releases` empty), and success. On error, keep the page usable and show a short message, or the last cached copy if there is one.
+7. Optionally cache the last good response (for example in `localStorage` or app storage) and show it at once while a fresh copy loads.
+
+## "What's new" badge (optional)
+
+To highlight unseen notes inside the app:
+
+- Store the last `latest` value the user saw.
+- Compare versions numerically, component by component (so 1.10.0 is newer than 1.9.0). Don't compare them as strings.
+- Show a badge when `latest` is newer than the stored value, and update the stored value when the user opens the view.
+- Treat every release newer than the stored version as unseen, and skip entries whose `version` is `null`.
+
+## Don'ts
+
+- Don't scrape `index.html`; it is only a reference page and its markup may change.
+- Don't depend on the comment line or the exact Markdown layout of `CHANGELOG.md`. Use the JSON for structured data.
+- Don't call the GitHub API or raw.githubusercontent.com for this data. Use the GitHub Pages URLs above.
+- Don't poll often. One fetch when the view opens (or once per app start) is enough.
