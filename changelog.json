@@ -1,6 +1,17 @@
 {
-  "latest": "1.20.1",
+  "latest": "1.20.2",
   "releases": [
+    {
+      "version": "1.20.2",
+      "title": "Versão 1.20.2",
+      "items": [
+        "Campos personalizados na chamada numérica.",
+        "Acesse o link da chamada dos participantes de massagem.",
+        "Busca aprimorada e acesso mais claro no login administrativo.",
+        "Ajustes nos avisos de check-in e nas evidências das aulas.",
+        "Melhorias de estabilidade."
+      ]
+    },
     {
       "version": "1.20.1",
       "title": "Versão 1.20.1",

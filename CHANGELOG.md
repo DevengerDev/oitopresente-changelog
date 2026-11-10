@@ -2,6 +2,14 @@
 
 <!-- Gerado automaticamente a partir do CHANGELOG.md do aplicativo. Não edite à mão. -->
 
+## Versão 1.20.2
+
+- Campos personalizados na chamada numérica.
+- Acesse o link da chamada dos participantes de massagem.
+- Busca aprimorada e acesso mais claro no login administrativo.
+- Ajustes nos avisos de check-in e nas evidências das aulas.
+- Melhorias de estabilidade.
+
 ## Versão 1.20.1
 
 - Foto da aula separada por horário, inclusive nos segmentos.
