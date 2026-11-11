@@ -1,6 +1,17 @@
 {
-  "latest": "1.20.2",
+  "latest": "1.20.3",
   "releases": [
+    {
+      "version": "1.20.3",
+      "title": "Versão 1.20.3",
+      "items": [
+        "Corrigida a duplicação da lista de alunos ao concluir a chamada.",
+        "Corrigida a criação de substituições.",
+        "Chamadas parciais voltam a recuperar as presenças já marcadas.",
+        "Aulas compartilhadas aparecem concluídas para todos os professores principais.",
+        "A chamada aguarda a lista de alunos carregar antes de salvar."
+      ]
+    },
     {
       "version": "1.20.2",
       "title": "Versão 1.20.2",

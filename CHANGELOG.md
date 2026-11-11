@@ -2,6 +2,14 @@
 
 <!-- Gerado automaticamente a partir do CHANGELOG.md do aplicativo. Não edite à mão. -->
 
+## Versão 1.20.3
+
+- Corrigida a duplicação da lista de alunos ao concluir a chamada.
+- Corrigida a criação de substituições.
+- Chamadas parciais voltam a recuperar as presenças já marcadas.
+- Aulas compartilhadas aparecem concluídas para todos os professores principais.
+- A chamada aguarda a lista de alunos carregar antes de salvar.
+
 ## Versão 1.20.2
 
 - Campos personalizados na chamada numérica.
