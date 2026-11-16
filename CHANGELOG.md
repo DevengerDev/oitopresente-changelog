@@ -2,6 +2,17 @@
 
 <!-- Gerado automaticamente a partir do CHANGELOG.md do aplicativo. Não edite à mão. -->
 
+## Versão 1.21.0
+
+- Áudios da chamada gravados sem conexão são enviados automaticamente depois.
+- Nova tela de Áudios pendentes no menu.
+- Nova tela de Permissões no menu.
+- Nova interface de gravação e reprodução de áudio.
+- Segmentos: foto do horário na tela da chamada.
+- Corrigido o pedido de permissão de notificações no Android.
+- Substituições não aparecem mais em datas futuras.
+- Melhorias de estabilidade.
+
 ## Versão 1.20.3
 
 - Corrigida a duplicação da lista de alunos ao concluir a chamada.
