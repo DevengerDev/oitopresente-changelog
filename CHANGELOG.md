@@ -2,6 +2,15 @@
 
 <!-- Gerado automaticamente a partir do CHANGELOG.md do aplicativo. Não edite à mão. -->
 
+## Versão 1.21.1
+
+- Várias fotos por aula, com galeria para ver, adicionar e excluir.
+- Fotos da aula tiradas sem conexão são enviadas automaticamente depois.
+- Nova tela de Uploads pendentes, com fotos e áudios.
+- Aviso de foto da aula obrigatória, quando a empresa exige.
+- Aulas com lançamento bloqueado ou em recesso aparecem indicadas na Agenda.
+- Melhorias de estabilidade.
+
 ## Versão 1.21.0
 
 - Áudios da chamada gravados sem conexão são enviados automaticamente depois.
